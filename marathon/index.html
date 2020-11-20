@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="utf-8"> 
+    <title>马拉松配速计算器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Leckerli+One&family=Noto+Serif+SC:wght@700&family=Slackey&display=swap" rel="stylesheet">
+    <style>
+      h2 {font-family:'Leckerli One', cursive;font-size:40px;text-shadow: 1px 1px 1px #aaa;}
+      .ixxj {font-family:'Leckerli One', cursive;}
+      h3 {font-family:'Noto Serif SC', cursive;font-size:30px;}
+      h3 a {color:#555;text-decoration: none;}
+      h3 a:hover {color:#333;text-decoration: underline;}
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h3 class="text-center text-primary">马拉松配速计算器 &nbsp; <small class="ixxj">IxxJ.com</small></h3>
+      <form class="form-horizontal mt-5" role="form">
+        <div class="form-group">
+          <label for="distance" class="col-sm-2 control-label">距离</label>
+          <div class="col-sm-10">
+            <div class="input-group">
+              <input type="text" class="form-control" id="distance" placeholder="请输入距离">
+              <span class="input-group-addon">公里</span>
+            </div>
+            <div class="btn-group" style="width:100%;margin-top:1rem">
+              <button type="button" id="btn-marathon" class="btn btn-default col-xs-3">全马</button>
+              <button type="button" id="btn-half-marathon"  class="btn btn-default col-xs-3">半马</button>
+              <button type="button" id="btn-10km"  class="btn btn-default col-xs-3">十公里</button>
+              <button type="button" id="btn-other"  class="btn btn-default btn-primary col-xs-3">其他距离</button>
+            </div>
+          </div>
+          
+        </div>
+        <div class="form-group">
+          <label for="lastname" class="col-sm-2 control-label">时间</label>
+          <div class="col-sm-10">
+            <div class="input-group">
+              <input type="text" class="form-control" id="hours" placeholder="0">
+              <span class="input-group-addon">小时</span>
+              <input type="text" class="form-control" id="minutes" placeholder="0">
+              <span class="input-group-addon">分</span>
+              <input type="text" class="form-control" id="seconds" placeholder="0">
+              <span class="input-group-addon">秒</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="lastname" class="col-sm-2 control-label">配速</label>
+          <div class="col-sm-10">
+            <div class="input-group">
+              <input type="text" class="form-control" id="minutes2" placeholder="0">
+              <span class="input-group-addon">分</span>
+              <input type="text" class="form-control" id="seconds2" placeholder="0">
+              <span class="input-group-addon">秒每公里</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="button" id="btn-calculate" class="btn btn-primary" style="width: 18rem;">
+              计 算 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calculator-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm2 .5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-2zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zM4.5 9a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM4 12.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zM7.5 6a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM7 9.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm.5 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM10 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm.5 2.5a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-4a.5.5 0 0 0-.5-.5h-1z"/>
+              </svg>
+            </button>
+            <button type="button" id="btn-clear" class="btn btn-default" style="width: 18rem;margin-left: 1rem;">
+              清 除 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="alert alert-warning alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert"
+                  aria-hidden="true">
+              &times;
+          </button>
+          请填写所有数据。
+        </div>
+      </form>
+    </div>
+
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script language="javascript">
+      $(document).ready(function(){
+        $("#btn-marathon").click(function(){
+          $("#distance").val("42.195");
+          $(".btn-group :button").removeClass("btn-primary");
+          $(this).addClass("btn-primary");
+        });
+        $("#btn-half-marathon").click(function(){
+          $("#distance").val("21.0975");
+          $(".btn-group :button").removeClass("btn-primary");
+          $(this).addClass("btn-primary");
+        });
+        $("#btn-10km").click(function(){
+          $("#distance").val("10");
+          $(".btn-group :button").removeClass("btn-primary");
+          $(this).addClass("btn-primary");
+        });
+        $("#btn-other").click(function(){
+          $("#distance").val("");
+          $(".btn-group :button").removeClass("btn-primary");
+          $(this).addClass("btn-primary");
+        });
+        $("#btn-clear").click(function(){
+          $("input").val("");
+          $(".btn-group :button").removeClass("btn-primary");
+          $("#btn-other").addClass("btn-primary");
+        });
+        $("#btn-calculate").click(function(){
+          toTime();
+        });
+      }); 
+
+
+    function toPace() {
+      var d = $("#distance").val();
+      var h = $("#hours").val();
+      var m = $("#minutes").val();
+      var s = $("#seconds").val();
+      var speed = parseFloat(h) * 60.0 + parseFloat(m) + parseFloat(s) / 60.0;
+      speed = speed / parseFloat(d);
+      speed_minutes = Math.floor(speed);
+      speed_seconds = Math.floor((speed - speed_minutes) * 60.0);
+      $("#minutes2").val(speed_minutes);
+      $("#seconds2").val(speed_seconds);
+      return;
+    }
+        function toTime() {
+          var d = $("#distance").val();
+          var m2 = $("#minutes2").val();
+          var s2 = $("#seconds2").val();
+          var atime = parseFloat(m2) + parseFloat(s2) / 60.0;
+          atime = atime * parseFloat(d);
+          hours = Math.floor(atime / 60.0);
+          minutes = Math.floor(atime - hours * 60.0);
+          seconds = Math.floor((atime - hours * 60.0 - minutes) * 60.0);
+          document.getElementById("hours").value = hours;
+          document.getElementById("minutes").value = minutes;
+          document.getElementById("seconds").value = seconds;
+          return;
+        }
+
+
+      function OK()
+      {
+        var distance = document.getElementById("distance").value;
+        var hours = document.getElementById("hours").value;
+        var minutes = document.getElementById("minutes").value;
+        var seconds = document.getElementById("seconds").value;
+        var speed_minutes = document.getElementById("speed_minutes").value;
+        var speed_seconds = document.getElementById("speed_seconds").value;
+        document.getElementById("calorie").innerHTML = "";
+        if(distance.length > 0 && hours.length > 0 && minutes.length > 0 && seconds.length > 0)
+        {
+          var speed = parseFloat(hours) * 60.0 + parseFloat(minutes) + parseFloat(seconds) / 60.0;
+          speed = speed / parseFloat(distance);
+          speed_minutes = Math.floor(speed);
+          speed_seconds = Math.floor((speed - speed_minutes) * 60.0);
+          document.getElementById("speed_minutes").value = speed_minutes;
+          document.getElementById("speed_seconds").value = speed_seconds;
+          return;
+        }
+        if(distance.length > 0 && speed_minutes.length > 0 && speed_seconds.length > 0)
+        {
+          var atime = parseFloat(speed_minutes) + parseFloat(speed_seconds) / 60.0;
+          atime = atime * parseFloat(distance);
+          hours = Math.floor(atime / 60.0);
+          minutes = Math.floor(atime - hours * 60.0);
+          seconds = Math.floor((atime - hours * 60.0 - minutes)*60.0);
+          document.getElementById("hours").value =  hours;
+          document.getElementById("minutes").value = minutes;
+          document.getElementById("seconds").value = seconds;
+          return;
+        }
+        if(minutes.length > 0 && seconds.length > 0 && speed_minutes.length > 0 && speed_seconds.length > 0)
+        {
+          var atime = parseFloat(hours) * 60 + parseFloat(minutes) + parseFloat(seconds) / 60.0;
+          var speed = parseFloat(speed_minutes) + parseFloat(speed_seconds) / 60.0;
+          //distance = Math.floor(atime / speed);
+          distance = atime / speed;
+          document.getElementById("distance").value =  distance.toFixed(1);
+          return;
+        }
+        document.getElementById("calorie").innerHTML = "输入数据不够";
+      }
+      </script>
+  </body>
+
+</html>
